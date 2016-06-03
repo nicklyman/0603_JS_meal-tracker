@@ -1,33 +1,6 @@
 import { Component, EventEmitter } from 'angular2/core';
-
-//Child of MealListComponent
-
-//Child of AppComponent, Parent of MealComponent
-@Component({
-  selector: 'meal-list',//HTML tag
-  inputs: ['mealList'],//gets list of meals from 'my-app'
-  outputs: ['onMealSelect'],//output selected meal to parent 'my-app' after click event
-  template: `
-    <h3 *ngFor="#currentMeal of mealList"
-      (click)="mealClicked(currentMeal)"
-      [class.selected]="currentMeal === selectedMeal">
-      {{ currentMeal.name }}
-    </h3>
-  `
-  //MealListComponent displays a list of meals and when a meal is clicked/selected, that event is emitted to the parent and that meal name is highlighted
-})
-export class MealListComponent {
-  public mealList: Meal[];//array of meals
-  public onMealSelect: EventEmitter<Meal>;//creating a property to hold the EventEmitter object for our output when the event is triggered
-  public selectedMeal: Meal;//variable to keep track of which meal was clicked on
-  constructor() {
-    this.onMealSelect = new EventEmitter();//instantiating the EventEmitter object
-  }
-  mealClicked(clickedMeal: Meal): void {
-    this.selectedMeal = clickedMeal;//variable is set when a click event is received and triggers mealClicked method to run
-    this.onMealSelect.emit(clickedMeal);//when a meal is clicked, this method emits the selected meal to 'my-app'
-  }
-}
+import { MealListComponent } from './meal-list.component';
+import { Meal } from './meal.model';
 
 //Trunk class, Child is MealListComponent
 @Component({
@@ -58,11 +31,5 @@ export class AppComponent {
     ];
   }
   mealWasSelected(clickedMeal: Meal): void {
-  }
-}
-
-//Meal model - contains the framework for our Meal objects
-export class Meal {
-  constructor(public name: string, public description: string, public calories: number, public id: number) {
-  }
+  }//method takes the clickedMeal parameter and is triggered when a meal is clicked, but doesn't return anything (void)
 }
