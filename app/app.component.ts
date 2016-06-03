@@ -15,10 +15,11 @@ import { Meal } from './meal.model';
       </meal-list>
     </div>
   `
+})
   //in <meal-list> the value from the parent property (AppComponent) "meals" is put into the child component's (MealListComponent) [mealList] property to be displayed - [] = input to component
   //<meal-list> also connects the output (onMealSelect) - custom EventEmitter, to the parent method mealWasSelected($event) - () = output from component
   //($event) recieves the clicked meal from the 'meal-list' and that meal.name is highlighted
-})
+
 export class AppComponent {
   public meals: Meal[];//array of meals
   constructor() {
