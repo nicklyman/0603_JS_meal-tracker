@@ -1,10 +1,12 @@
 import { Component, EventEmitter } from 'angular2/core';
 
-//Child of AppComponent
+//Child of MealListComponent
+
+//Child of AppComponent, Parent of MealComponent
 @Component({
-  selector: 'meal-list',
+  selector: 'meal-list',//HTML tag
   inputs: ['mealList'],//gets list of meals from 'my-app'
-  outputs: ['onMealSelect'],//output selected meal to parent 'my-app'
+  outputs: ['onMealSelect'],//output selected meal to parent 'my-app' after click event
   template: `
     <h3 *ngFor="#currentMeal of mealList"
       (click)="mealClicked(currentMeal)"
@@ -12,24 +14,25 @@ import { Component, EventEmitter } from 'angular2/core';
       {{ currentMeal.name }}
     </h3>
   `
+  //MealListComponent displays a list of meals and when a meal is clicked/selected, that event is emitted to the parent and that meal name is highlighted
 })
 export class MealListComponent {
-  public mealList: Meal[];
-  public onMealSelect: EventEmitter<Meal>;
-  public selectedMeal: Meal;
+  public mealList: Meal[];//array of meals
+  public onMealSelect: EventEmitter<Meal>;//creating a property to hold the EventEmitter object for our output when the event is triggered
+  public selectedMeal: Meal;//variable to keep track of which meal was clicked on
   constructor() {
-    this.onMealSelect = new EventEmitter();
+    this.onMealSelect = new EventEmitter();//instantiating the EventEmitter object
   }
   mealClicked(clickedMeal: Meal): void {
-    this.selectedMeal = clickedMeal;
-    this.onMealSelect.emit(clickedMeal);//When a meal is clicked, this method emits the selected meal to 'my-app'
+    this.selectedMeal = clickedMeal;//variable is set when a click event is received and triggers mealClicked method to run
+    this.onMealSelect.emit(clickedMeal);//when a meal is clicked, this method emits the selected meal to 'my-app'
   }
 }
 
-//Parent class - child is MealListComponent
+//Trunk class, Child is MealListComponent
 @Component({
-  selector: 'my-app',
-  directives: [MealListComponent],
+  selector: 'my-app',//HTML tag
+  directives: [MealListComponent],//tells the parent the name of it's child component where it will be receiving event emissions from
   template: `
     <div class="container">
       <h1>Meal Tracker</h1>
@@ -38,10 +41,13 @@ export class MealListComponent {
         (onMealSelect)="mealWasSelected($event)">
       </meal-list>
     </div>
-  `//($event) recieves the clicked meal from the 'meal-list' and that meal.name is highlighted
+  `
+  //in <meal-list> the value from the parent property (AppComponent) "meals" is put into the child component's (MealListComponent) [mealList] property to be displayed - [] = input to component
+  //<meal-list> also connects the output (onMealSelect) - custom EventEmitter, to the parent method mealWasSelected($event) - () = output from component
+  //($event) recieves the clicked meal from the 'meal-list' and that meal.name is highlighted
 })
 export class AppComponent {
-  public meals: Meal[];
+  public meals: Meal[];//array of meals
   constructor() {
     this.meals = [
       new Meal("Bagel and cream cheese", "Light cream cheese", 410, 0),
@@ -55,8 +61,8 @@ export class AppComponent {
   }
 }
 
+//Meal model - contains the framework for our Meal objects
 export class Meal {
   constructor(public name: string, public description: string, public calories: number, public id: number) {
-
   }
 }
