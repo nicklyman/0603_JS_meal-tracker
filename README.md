@@ -14,7 +14,19 @@ This food tracking web application allows a user to enter a meal, description, a
 * Clone or download this repository to your Github account
 * Create a project directory on your computer
 * Have Node.js installed on your computer
-* In your terminal type (without quotation marks) the following commands in order: "npm install", "bower install", "gulp build", "gulp serve"
+* In your terminal type the following commands in order: 
+
+ * npm install
+ * bower install
+   * If necessary, install globals as listed below:
+    * npm install gulp -g
+    * npm install bower -g
+    * gem install sass
+    * npm install typescript -g
+    * apm install atom-typescript
+ * gulp build
+ * gulp server
+
 * A local web server should automatically open in your browser with the website loaded if you have a browser open
 
 ## Known Bugs
