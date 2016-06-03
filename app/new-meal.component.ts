@@ -8,10 +8,10 @@ import {Meal} from './meal.model';
   template: `
     <div class="meal-form">
       <h3>Add meal:</h3>
-      <input placeholder="meal name" #newMealName>
-      <input placeholder="meal notes" #newMealNotes>
-      <input placeholder="meal calories" #newMealCalories>
-      <button (click)="addMeal(newMealName, newMealNotes, newMealCalories)" class="btn-danger add-button">Add Meal</button>
+      <input placeholder="meal name" class="col-sm-3" #newMealName>
+      <input placeholder="meal notes" class="col-sm-3" #newMealNotes>
+      <input placeholder="meal calories" class="col-sm-3" #newMealCalories>
+      <button (click)="addMeal(newMealName, newMealNotes, newMealCalories)" class="btn-danger add-button">Add a Meal!!!</button>
     </div>
   `
 })

@@ -6,7 +6,7 @@ import { Meal } from './meal.model';
   selector: 'edit-meal-details',
   inputs: ['meal'], //the meal that will be edited
   template: `
-    <div class="meal-form">
+    <div class="meal-form" id="edit-meals">
       <h3>Edit a Meal:</h3>
       <label>Name: </label>
       <input [(ngModel)]="meal.name"><br>

@@ -28,7 +28,8 @@ export class AppComponent {
       new Meal("Hamburger", "Added bacon and mushrooms", 775, 1),
       new Meal("Gin and juice", "Grapefruit juice", 300, 2),
       new Meal("Salad", "Fresh vegetables from the garden", 330, 3),
-      new Meal("Banana split", "Worth every bite!", 900, 4)
+      new Meal("Banana split", "Worth every bite!", 900, 4),
+      new Meal("Hot dogs", "Ate more than 50, but it was a contest!", 19800, 5)
     ];
   }
   mealWasSelected(clickedMeal: Meal): void {

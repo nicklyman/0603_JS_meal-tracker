@@ -18,6 +18,10 @@ export class MealQualityPipe implements PipeTransform {
       return mealList.filter((meal) => {
         return meal.calories >= 500;
       });
+    } else if (userSelection === "reallyUnhealthy") { //"reallyUnhealthy" option selected and the pipe filters out any meals that do not meet the criteria and only displays the meals with 10,000 calories or more
+      return mealList.filter((meal) => {
+        return meal.calories >= 10000;
+      });
     } else {
       return mealList; //equivalent to "all" option since there is no filtering criteria and all meals are displayed to the user
     }

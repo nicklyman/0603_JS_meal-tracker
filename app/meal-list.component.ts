@@ -15,8 +15,9 @@ import { MealQualityPipe } from './MealQuality.pipe';
   template: `
     <select (change)="onChange($event.target.value)" class="filter">
       <option value="all" selected="selected">Show All Meals</option>
-      <option value="healthy">Show Meals With Fewer Than 500 Calories</option>
-      <option value="unhealthy">Show Unhealthy Meals With 500 or More Calories</option>
+      <option value="healthy">Show Healthy Meals With Fewer Than 500 Calories</option>
+      <option value="unhealthy">Show Unhealthy Meals With More Than 500 Calories</option>
+      <option value="reallyUnhealthy">Show Unhealthy Meals With More Than 10000 Calories</option>
     </select>
     <meal-display *ngFor="#currentMeal of mealList | mealQuality:filterMealQuality"
       (click)="mealClicked(currentMeal)"

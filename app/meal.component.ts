@@ -8,8 +8,8 @@ import { Meal } from './meal.model';
   template: `
     <h3 (click)="displayMeal()">{{ meal.name }}</h3>
     <div *ngIf="mealVisible">
-      <p>Notes: {{meal.notes}}</p>
-      <p>Calories: {{meal.calories}}</p>
+      <h4>Notes: {{meal.notes}}</h4>
+      <h4>Calories: {{meal.calories}}</h4>
     </div>
   `
 })
