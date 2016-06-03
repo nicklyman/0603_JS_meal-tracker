@@ -18,12 +18,12 @@ This food tracking web application allows a user to enter a meal, description, a
 
  * npm install
  * bower install
-  * If necessary, install globals as listed below:
-   * npm install gulp -g
-   * npm install bower -g
-   * gem install sass
-   * npm install typescript -g
-   * apm install atom-typescript
+    * If necessary, install globals as listed below:
+      * npm install gulp -g
+      * npm install bower -g
+      * gem install sass
+      * npm install typescript -g
+      * apm install atom-typescript
  * gulp build
  * gulp server
 
