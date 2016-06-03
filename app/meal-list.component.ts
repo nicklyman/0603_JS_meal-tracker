@@ -3,6 +3,7 @@ import { MealComponent } from './meal.component';
 import { Meal } from './meal.model';
 import { EditMealDetailsComponent } from './edit-meal-details.component';
 import { NewMealComponent } from './new-meal.component';
+import { MealQualityPipe } from './MealQuality.pipe';
 
 //Child of AppComponent, Parent of MealComponent
 @Component({
@@ -10,8 +11,14 @@ import { NewMealComponent } from './new-meal.component';
   inputs: ['mealList'],//creates list of meals from 'my-app'
   outputs: ['onMealSelect'],//output selected meal to parent 'my-app' after click event
   directives: [MealComponent, EditMealDetailsComponent, NewMealComponent],//MealListComponent is parent of directives
+  pipes: [MealQualityPipe],
   template: `
-    <meal-display *ngFor="#currentMeal of mealList"
+    <select (change)="onChange($event.target.value)">
+      <option value="all" selected="selected">Show All Meals</option>
+      <option value="healthy">Show Meals With Fewer Than 500 Calories</option>
+      <option value="unhealthy">Show Unhealthy Meals With 500 or More Calories</option>
+    </select>
+    <meal-display *ngFor="#currentMeal of mealList | mealQuality:filterMealQuality"
       (click)="mealClicked(currentMeal)"
       [class.selected]="currentMeal === selectedMeal"
       [meal]="currentMeal">
@@ -28,6 +35,7 @@ export class MealListComponent {
   public mealList: Meal[];//array of meals
   public onMealSelect: EventEmitter<Meal>;//creating a property to hold the EventEmitter object for our output when the event is triggered
   public selectedMeal: Meal;//variable to keep track of which meal was clicked on
+  public filterMealQuality: string = "all";
   constructor() {
     this.onMealSelect = new EventEmitter();//instantiating the EventEmitter object
   }
@@ -38,5 +46,8 @@ export class MealListComponent {
   addMeal(newMeal: Meal): void {
     newMeal.id = this.mealList.length;
     this.mealList.push(newMeal);
+  }
+  onChange(filterOption) {
+    this.filterMealQuality = filterOption;
   }
 }
