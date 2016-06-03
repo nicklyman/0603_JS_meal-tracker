@@ -15,19 +15,19 @@ import {Meal} from './meal.model';
     </div>
   `
 })
-  //user can add a new meal and after the button is clicked, the meal is emitted through the addMeal() to the MealListComponent, appending to the list of meals
-  
+  //user can add a new meal and after the button is clicked, the meal is emitted through the addMeal() method below to the MealListComponent, appending to the list of meals
+
 export class NewMealComponent {
   public onSubmitNewMeal: EventEmitter<Meal>;
   constructor() {
-    this.onSubmitNewMeal = new EventEmitter();
+    this.onSubmitNewMeal = new EventEmitter(); //added meal is emitted to the ($event) in the MealListComponent <new-meal> tag
   }
   addMeal(addedMealName: HTMLInputElement, addedMealNotes: HTMLInputElement, addedMealCalories: HTMLInputElement) {
     var newMeal = new Meal (addedMealName.value, addedMealNotes.value, parseInt(addedMealCalories.value), 0);
 
     console.log(newMeal);
     this.onSubmitNewMeal.emit(newMeal);
-    addedMealName.value = "";//clears the input field after button click
+    addedMealName.value = ""; //clears the input fields after button click
     addedMealNotes.value = "";
     addedMealCalories.value = "";
   }

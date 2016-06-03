@@ -4,7 +4,7 @@ import { Meal } from './meal.model';
 //Child of MealListComponent and master-detail interface for editing details of a meal from the list of meals
 @Component({
   selector: 'edit-meal-details',
-  inputs: ['meal'],//the meal that will be edited
+  inputs: ['meal'], //the meal that will be edited
   template: `
     <div class="meal-form">
       <h3>Edit a Meal:</h3>
@@ -17,6 +17,8 @@ import { Meal } from './meal.model';
     </div>
   `
 })
+  //above are the fields that are available for editing
+
 export class EditMealDetailsComponent {
   public meal: Meal;
 }
